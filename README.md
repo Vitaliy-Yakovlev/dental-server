@@ -2,6 +2,12 @@
 
 Сервер для інтеграції форми запису на прийом з CRM системою ClinicCards.
 
+## Живий сервер
+
+🚀 **Prod Environment**: <https://dental-server-cdv4.onrender.com/>
+
+Сервер развернут на платформе Render и готов к использованию.
+
 ## Налаштування
 
 ### 1. Встановлення залежностей
@@ -37,11 +43,13 @@ APPOINTMENT_DURATION_MINUTES=30
 ### 3. Запуск сервера
 
 Для розробки:
+
 ```bash
 npm run dev
 ```
 
 Для продакшену:
+
 ```bash
 npm start
 ```
@@ -49,12 +57,15 @@ npm start
 ## API Endpoints
 
 ### GET /api/available-times/:date
+
 Отримує доступні часові слоти для конкретної дати.
 
 **Параметри:**
+
 - `date` - дата у форматі YYYY-MM-DD
 
 **Відповідь:**
+
 ```json
 {
   "date": "2024-01-15",
@@ -68,9 +79,11 @@ npm start
 ```
 
 ### POST /api/book-appointment
+
 Створює пацієнта та запис на прийом.
 
 **Тіло запиту:**
+
 ```json
 {
   "firstName": "Іван",
@@ -86,6 +99,7 @@ npm start
 ```
 
 **Відповідь:**
+
 ```json
 {
   "success": true,
@@ -102,9 +116,11 @@ npm start
 ```
 
 ### GET /api/cabinets
+
 Отримує список кабінетів з CRM.
 
 ### GET /api/health
+
 Перевірка стану сервера.
 
 ## Логіка роботи
@@ -132,11 +148,11 @@ npm start
 
 ```javascript
 // Отримання доступних часів
-const response = await fetch('http://localhost:3000/api/available-times/2024-01-15');
+const response = await fetch('https://dental-server-cdv4.onrender.com/api/available-times/2024-01-15');
 const data = await response.json();
 
 // Створення запису
-const bookingResponse = await fetch('http://localhost:3000/api/book-appointment', {
+const bookingResponse = await fetch('https://dental-server-cdv4.onrender.com/api/book-appointment', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -150,4 +166,12 @@ const bookingResponse = await fetch('http://localhost:3000/api/book-appointment'
     appointmentTime: '10:00'
   })
 });
+```
+
+## Локальна розробка
+
+Для локального тестування використовуйте:
+
+```
+http://localhost:3000
 ```
